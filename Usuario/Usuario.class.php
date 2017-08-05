@@ -1,7 +1,7 @@
 <?php
 
 
-class Usuario{
+class Usuario implements JsonSerializable{
 	
 	private $nome;
 	private $sobrenome;
@@ -28,6 +28,18 @@ class Usuario{
 		$this->id = $id;
 		}
 		
+	public function jsonSerialize()
+    {
+        return [
+            'cliente' => [
+                'nome' => $this->getNome(),
+                'idade' => $this->getIdade(),				
+                'sexo' => $this->getSexo(),
+                'id' => $this->getId()
+            ]
+        ];
+    }
+	
 	public function setNome($nome){
 		$this->nome = $nome;
 		}
